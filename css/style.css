@@ -1,0 +1,9 @@
+body {
+    margin: auto;
+    max-width: 1400px;
+}
+
+.recette-img {
+    height: 200px;
+    background-color: grey;
+}
