@@ -93,11 +93,19 @@ async function triByTag(e) {
     const divDom = document.querySelector('.ingredients-tag')
     const recettesTri = recettes.filter(recette => triIngredients(recette.ingredients, tagLowerCase))
     displayRecettes(recettesTri)
+
+    displaySearchTags(getSearchIngredients(recettesTri), '.ingredients-tag')
+    displaySearchTags(getSearchAppareils(recettesTri), '.appareils-tag')
+    displaySearchTags(getSearchUstensiles(recettesTri), '.ustensiles-tag')
   }
   else if (e.target.parentNode.classList.contains('appareils-tag')) {
     const divDom = document.querySelector('.appareils-tag')
     const recettesTri = recettes.filter(recette => recette.appliance.toLowerCase().includes(tagLowerCase))
     displayRecettes(recettesTri)
+
+    displaySearchTags(getSearchIngredients(recettesTri), '.ingredients-tag')
+    displaySearchTags(getSearchAppareils(recettesTri), '.appareils-tag')
+    displaySearchTags(getSearchUstensiles(recettesTri), '.ustensiles-tag')
   }
   else if (e.target.parentNode.classList.contains('ustensiles-tag')) {
     const divDom = document.querySelector('.ustensiles-tag')
@@ -106,6 +114,10 @@ async function triByTag(e) {
       return ustensilsLowerCase.includes(tagLowerCase)
     })
     displayRecettes(recettesTri)
+
+    displaySearchTags(getSearchIngredients(recettesTri), '.ingredients-tag')
+    displaySearchTags(getSearchAppareils(recettesTri), '.appareils-tag')
+    displaySearchTags(getSearchUstensiles(recettesTri), '.ustensiles-tag')
   }
 }
 
