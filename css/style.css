@@ -3,7 +3,25 @@ body {
     max-width: 1400px;
 }
 
+.card {
+    height: 100%;
+}
+
 .recette-img {
     height: 200px;
     background-color: grey;
+}
+
+/* css provisoir avant de mettre du bootstrap */
+
+.ingredients-tag, .appareils-tag, .ustensiles-tag {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.ingredients-tag > p, .appareils-tag > p, .ustensiles-tag > p {
+    margin: 0;
+    cursor: pointer;
+    border: 1px solid black;
 }

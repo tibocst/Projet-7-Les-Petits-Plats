@@ -2,10 +2,12 @@ export function recetteFactory (data) {
   const { id, name, servings, ingredients, time, description, appliance, ustensils } = data
 
   function getCardDOM () {
+    const rootDom = document.createElement('div')
     const cardDom = document.createElement('div')
-    cardDom.classList.add('card','col-4')
-    cardDom.style.width = '18rem'
-    cardDom.innerHTML = '<div class="recette-img row"></div><div class="card-body row"><div class="row"><h5 class="card-title col"></h5><div class="col"><i class="fa-regular fa-clock row"></i><p class="time row"></p></div></div><div class="row"><div class="ingredients col"></div><div class="description col"></div></div></div>'
+    cardDom.classList.add('card','col')
+    cardDom.setAttribute('data-id', id)
+
+    cardDom.innerHTML = '<div class="recette-img"></div><div class="card-body row"><div class="row"><h5 class="card-title col"></h5><div class="col"><i class="fa-regular fa-clock row"></i><p class="time row"></p></div></div><div class="row"><div class="ingredients col"></div><div class="description col"></div></div></div>'
     
     const pDescription = document.createElement('p')
     pDescription.innerText = description
@@ -15,8 +17,8 @@ export function recetteFactory (data) {
     cardDom.querySelector('.description').appendChild(pDescription)
     
     cardDom.appendChild(getIngredientsDOM(cardDom))
-
-    return (cardDom)
+    rootDom.appendChild(cardDom)
+    return (rootDom)
   }
 
   function getIngredientsDOM (cardDom) {
@@ -25,8 +27,10 @@ export function recetteFactory (data) {
         const pIngredient = document.createElement('p')
         if (ingredient.unit){
             pIngredient.innerText = ingredient.ingredient + ': ' + ingredient.quantity + ' ' + ingredient.unit
-        } else {
+        } else if(ingredient.quantity) {
             pIngredient.innerText = ingredient.ingredient + ': ' + ingredient.quantity
+        } else {
+            pIngredient.innerText = ingredient.ingredient
         }
         ingredientsDom.appendChild(pIngredient)
     })

@@ -21,30 +21,38 @@
   </header>
   <main>
     <div>
-      <div class="search-bar"></div>
-      <div class="dropdown-button"></div>
+      <div class="search-bar container-fluid">
+        <input class="form-control mr-sm-2 col-8 search-bar_main" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </div>
+      <div class="dropdown-searchbar container-fluid">
+        <input class="form-control mr-sm-2 col-4" type="search" placeholder="Search" aria-label="Search">
+        <div class="ingredients-tag"></div>
+        <input class="form-control mr-sm-2 col-4" type="search" placeholder="Search" aria-label="Search">
+        <div class="appareils-tag"></div>
+        <input class="form-control mr-sm-2 col-4" type="search" placeholder="Search" aria-label="Search">
+        <div class="ustensiles-tag"></div>
+      </div>
     </div>
 
     <section class="card-recette container-fluid overflow-hidden">
-      <div class="row">
-        <!-- <div class="card col" style="width: 18rem;">
+      <div class="row row-cols-2 row-cols-lg-3 g-2 g-lg-3">
+        <!-- <div class="card col">
           <div class="recette-img row"></div>
           <div class="card-body row">
             <div class="row">
               <h5 class="card-title col"></h5>
-              <div class="col">
-                <i class="fa-regular fa-clock row"></i>
+              <div class="col"><i class="fa-regular fa-clock row"></i>
                 <p class="time row"></p>
               </div>
             </div>
             <div class="row">
-              <div class="ingredients col">
-              </div>
-              <div class="description col">
-              </div>
+              <div class="ingredients col"></div>
+              <div class="description col"></div>
             </div>
           </div>
         </div> -->
+        
       </div>
     </section>
 
