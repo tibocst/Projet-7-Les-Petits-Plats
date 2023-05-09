@@ -1,5 +1,5 @@
 import { recetteFactory, getRecettes } from '../factories/recetteFactory.js'
-import { triRecettes, getSearchIngredients, getSearchAppareils, getSearchUstensiles} from '../utils/mainSearch.js'
+import { triRecettes, getSearchIngredients, getSearchAppareils, getSearchUstensiles } from '../utils/mainSearch.js'
 import { displaySearchTags } from '../utils/tagSearch.js'
 
 export async function displayRecettes(recettes) {
@@ -37,6 +37,11 @@ async function initRecette() {
       displaySearchTags(getSearchUstensiles(recettes), '.ustensiles-tag')
     }
   })
+
+  // a faire : ajouter un event listner sur chaque champs de recherche des tags qui pointe vers une fonction de recherche dans tagSearch.js
+  // puis : dans la fonction, faire qu'elle écoute les caractères lu pr l'event listener et qu'elle filtre en fonction des tags présents sur la page
+  // puis : au clic sur un tag, qu'il soit ajouté (fonction déjà créé) mais que le texte dans la bare de recherche du tag se clean
+  // puis : créer une fonction pour supprimer les tags et ajouter les recettes à la suppression du tag
 }
 
 initRecette()
