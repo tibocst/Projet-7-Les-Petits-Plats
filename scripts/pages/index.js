@@ -1,6 +1,6 @@
 import { recetteFactory, getRecettes } from '../factories/recetteFactory.js'
 import { triRecettes, getSearchIngredients, getSearchAppareils, getSearchUstensiles } from '../utils/mainSearch.js'
-import { displaySearchTags } from '../utils/tagSearch.js'
+import { displaySearchTags, ingredientsSearchListener, appareilsSearchListener, ustensilesSearchListener } from '../utils/tagSearch.js'
 
 export async function displayRecettes(recettes) {
   const recettesSection = document.querySelector('.card-recette > div')
@@ -37,6 +37,15 @@ async function initRecette() {
       displaySearchTags(getSearchUstensiles(recettes), '.ustensiles-tag')
     }
   })
+
+  const ingredientsSearchBar = document.querySelector('.ingredients-searchbar')
+  const appareilsSearchBar = document.querySelector('.appareils-searchbar')
+  const ustensilesSearchBar = document.querySelector('.ustensiles-searchbar')
+
+  ingredientsSearchBar.addEventListener('input', await ingredientsSearchListener)
+  appareilsSearchBar.addEventListener("input", await appareilsSearchListener)
+  ustensilesSearchBar.addEventListener("input", await ustensilesSearchListener)
+
 
   // a faire : ajouter un event listner sur chaque champs de recherche des tags qui pointe vers une fonction de recherche dans tagSearch.js
   // puis : dans la fonction, faire qu'elle écoute les caractères lu pr l'event listener et qu'elle filtre en fonction des tags présents sur la page

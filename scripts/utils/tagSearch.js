@@ -86,3 +86,27 @@ function checkIfTagAlreadyExist(stringToCheck) {
     }
     return false
 }
+
+export async function ingredientsSearchListener(e) {
+    displaySearchTags(getSearchIngredients(await getMultipleRecettesById(getAllCurrentReccettesId())).filter( element => element.toLowerCase().includes(e.target.value.toLowerCase())),'.ingredients-tag')
+}
+
+export async function appareilsSearchListener(e) {
+    displaySearchTags(getSearchAppareils(await getMultipleRecettesById(getAllCurrentReccettesId())).filter( element => element.toLowerCase().includes(e.target.value.toLowerCase())),'.appareils-tag')
+
+}
+
+export async function ustensilesSearchListener(e) {
+    displaySearchTags(getSearchUstensiles(await getMultipleRecettesById(getAllCurrentReccettesId())).filter( element => element.toLowerCase().includes(e.target.value.toLowerCase())),'.ustensiles-tag')
+}
+
+function getCurrentTags(type) {
+    var result = []
+    const pDom = document.querySelectorAll(type + ' > p')
+    pDom.forEach(variable => {
+        result.push(variable.innerText)
+    })
+    console.log(result)
+    return result
+}
+
