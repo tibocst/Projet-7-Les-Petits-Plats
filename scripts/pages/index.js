@@ -47,10 +47,7 @@ async function initRecette() {
   ustensilesSearchBar.addEventListener("input", await ustensilesSearchListener)
 
 
-  // a faire : ajouter un event listner sur chaque champs de recherche des tags qui pointe vers une fonction de recherche dans tagSearch.js
-  // puis : dans la fonction, faire qu'elle écoute les caractères lu pr l'event listener et qu'elle filtre en fonction des tags présents sur la page
-  // puis : au clic sur un tag, qu'il soit ajouté (fonction déjà créé) mais que le texte dans la bare de recherche du tag se clean
-  // puis : créer une fonction pour supprimer les tags et ajouter les recettes à la suppression du tag
+  // a faire : refaire une recherche sur les recettes après avoir supprimé le tag(à voir comment faire)
 }
 
 initRecette()
