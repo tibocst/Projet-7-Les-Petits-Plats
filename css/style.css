@@ -3,6 +3,14 @@ body {
     max-width: 1400px;
 }
 
+header {
+    margin-top: 20px;
+}
+
+header > div > h1 {
+    color: #d04f4f;
+}
+
 .card {
     height: 100%;
 }
@@ -12,12 +20,200 @@ body {
     background-color: grey;
 }
 
-/* css provisoir avant de mettre du bootstrap */
+/* main search bar */
+
+.search-bar {
+}
+
+.search-bar > div {
+    position: relative;
+    display: flex;
+    flex: 1;
+    height: 50px;
+    margin: 0 20px;
+}
+
+.search-bar_main {
+    background-color: #e7e7e7;
+    border: inherit;
+    border-radius: 4px;
+    flex-grow: 1;
+    padding: 5px 15px;
+}
+
+input[type="search"]:focus {
+    outline: none;
+}
+
+/* penser à retirer la croix sur les inputs search */
+input[type="search"]::-ms-clear {
+    display: none;
+}
+
+.search-bar > div > img {
+    position: absolute;
+    height: 20px;
+    right: 10px;
+    align-self: center;
+}
+
+/* tag ajouté en dessous de la barre de recherche principale */
+
+.search-tag > div {
+    display: flex;
+    gap: 5px;
+    cursor: pointer;
+    align-items: center;
+    margin: 10px 0;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+.ingredients-tag_added {
+    background-color: #3282f7;
+}
+
+.appareils-tag_added {
+    background-color: #68d9a4;
+}
+
+.ustensiles-tag_added {
+    background-color: #ed6454;
+}
+
+/* barre de recherche ingredient + tags */
+
+.dropdown-searchbar {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin: 20px;
+    width: 400px;
+}
+
+.div-ingredients {
+    position: relative;
+    display: flex;
+    flex-grow: 1;
+}
+
+.ingredients-searchbar {
+    background-color: #3282f7;
+    border: inherit;
+    border-radius: 4px;
+    padding: 5px 15px;
+    width: 130px;
+}
+
+.ingredients-searchbar::placeholder {
+    color: white;
+}
+
+.ingredients-searchbar:focus::placeholder {
+    color: grey;
+}
+
+.div-ingredients > img {
+    position: absolute;
+    align-self: center;
+    height: 20px;
+    right: 10px;
+    filter: invert(100%) sepia(1%) saturate(3573%) hue-rotate(56deg) brightness(106%) contrast(100%);
+}
+
+.div-appareils {
+    position: relative;
+    display: flex;
+    flex-grow: 1;
+}
+
+.appareils-searchbar {
+    background-color: #68d9a4;
+    border: inherit;
+    border-radius: 4px;
+    padding: 5px 15px;
+    width: 130px;
+}
+
+.appareils-searchbar::placeholder {
+    color: white;
+}
+
+.appareils-searchbar:focus::placeholder {
+    color: grey;
+}
+
+.div-appareils > img {
+    position: absolute;
+    align-self: center;
+    height: 20px;
+    right: 10px;
+    filter: invert(100%) sepia(1%) saturate(3573%) hue-rotate(56deg) brightness(106%) contrast(100%);
+}
+
+.div-ustensiles {
+    position: relative;
+    display: flex;
+    flex-grow: 1;
+}
+
+.ustensiles-searchbar {
+    background-color: #ed6454;
+    border: inherit;
+    border-radius: 4px;
+    padding: 5px 15px;
+    width: 130px;
+}
+
+.ustensiles-searchbar::placeholder {
+    color: white;
+}
+
+.ustensiles-searchbar:focus::placeholder {
+    color: grey;
+}
+
+.div-ustensiles > img {
+    position: absolute;
+    align-self: center;
+    height: 20px;
+    right: 10px;
+    filter: invert(100%) sepia(1%) saturate(3573%) hue-rotate(56deg) brightness(106%) contrast(100%);
+}
+
+.ingredients-tag {
+    display: none;
+}
+
+.appareils-tag {
+    display: none;
+}
+
+.ustensiles-tag {
+    display: none;
+    flex-direction: column;
+}
+
+.search-tag > div > p {
+    margin: 0;
+    color: white;
+    font-size: 0.8em;
+}
+
+.search-tag > div > img {
+    height: 15px;
+    filter: invert(100%) sepia(1%) saturate(3573%) hue-rotate(56deg) brightness(106%) contrast(100%);
+}
+
+
+
+
+
 
 .ingredients-tag, .appareils-tag, .ustensiles-tag, .search-tag {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+    /* gap: 10px; */
 }
 
 .ingredients-tag > p, .appareils-tag > p, .ustensiles-tag > p {
@@ -26,17 +222,7 @@ body {
     border: 1px solid black;
 }
 
-.search-tag > div {
-    display: flex;
-    gap: 5px;
-    cursor: pointer;
-    border: 1px solid black;
-}
 
-.search-tag > div > p {
-    margin: 0;
-}
 
-.search-tag > div > img {
-    height: 26px;
-}
+
+

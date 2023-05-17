@@ -96,7 +96,7 @@ function addSearchTag(e) {
         }
 
         pDom.innerText = e.target.innerText
-        imgDom.setAttribute('src', './assets/xmark-solid.svg')
+        imgDom.setAttribute('src', './assets/circle-xmark-regular.svg')
         divDom.appendChild(pDom)
         divDom.appendChild(imgDom)
         divSearchTags.appendChild(divDom)
