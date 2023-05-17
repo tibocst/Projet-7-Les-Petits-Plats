@@ -11,19 +11,7 @@ header > div > h1 {
     color: #d04f4f;
 }
 
-.card {
-    height: 100%;
-}
-
-.recette-img {
-    height: 200px;
-    background-color: grey;
-}
-
 /* main search bar */
-
-.search-bar {
-}
 
 .search-bar > div {
     position: relative;
@@ -89,6 +77,7 @@ input[type="search"]::-ms-clear {
     gap: 10px;
     margin: 20px;
     width: 400px;
+    position: relative;
 }
 
 .div-ingredients {
@@ -101,7 +90,7 @@ input[type="search"]::-ms-clear {
     background-color: #3282f7;
     border: inherit;
     border-radius: 4px;
-    padding: 5px 15px;
+    padding: 15px 15px;
     width: 130px;
 }
 
@@ -119,6 +108,7 @@ input[type="search"]::-ms-clear {
     height: 20px;
     right: 10px;
     filter: invert(100%) sepia(1%) saturate(3573%) hue-rotate(56deg) brightness(106%) contrast(100%);
+    transform: rotate(180deg);
 }
 
 .div-appareils {
@@ -131,7 +121,7 @@ input[type="search"]::-ms-clear {
     background-color: #68d9a4;
     border: inherit;
     border-radius: 4px;
-    padding: 5px 15px;
+    padding: 15px 15px;
     width: 130px;
 }
 
@@ -149,6 +139,7 @@ input[type="search"]::-ms-clear {
     height: 20px;
     right: 10px;
     filter: invert(100%) sepia(1%) saturate(3573%) hue-rotate(56deg) brightness(106%) contrast(100%);
+    transform: rotate(180deg);
 }
 
 .div-ustensiles {
@@ -161,7 +152,7 @@ input[type="search"]::-ms-clear {
     background-color: #ed6454;
     border: inherit;
     border-radius: 4px;
-    padding: 5px 15px;
+    padding: 15px 15px;
     width: 130px;
 }
 
@@ -179,19 +170,61 @@ input[type="search"]::-ms-clear {
     height: 20px;
     right: 10px;
     filter: invert(100%) sepia(1%) saturate(3573%) hue-rotate(56deg) brightness(106%) contrast(100%);
+    transform: rotate(180deg);
 }
 
 .ingredients-tag {
     display: none;
+    position: absolute;
+    background-color: #3282f7;
+    top: 54px;
+    width: 100%;
+    flex-wrap: wrap;
+    margin: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.ingredients-tag > p {
+    flex-basis: 33.333333%;
+    text-align: center;
+    color: white;
 }
 
 .appareils-tag {
     display: none;
+    position: absolute;
+    background-color: #68d9a4;
+    top: 45px;
+    width: 100%;
+    flex-wrap: wrap;
+    margin: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.appareils-tag > p {
+    flex-basis: 33.333333%;
+    text-align: center;
+    color: white;
 }
 
 .ustensiles-tag {
     display: none;
-    flex-direction: column;
+    position: absolute;
+    background-color: #ed6454;
+    top: 30px;
+    width: 100%;
+    flex-wrap: wrap;
+    margin: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.ustensiles-tag > p {
+    flex-basis: 33.333333%;
+    text-align: center;
+    color: white;
 }
 
 .search-tag > div > p {
@@ -205,23 +238,83 @@ input[type="search"]::-ms-clear {
     filter: invert(100%) sepia(1%) saturate(3573%) hue-rotate(56deg) brightness(106%) contrast(100%);
 }
 
+/* recettes */
 
-
-
-
-
-.ingredients-tag, .appareils-tag, .ustensiles-tag, .search-tag {
-    /* display: flex; */
-    /* flex-wrap: wrap; */
-    /* gap: 10px; */
+.section-recette {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1%;
+    row-gap: 25px;
 }
 
-.ingredients-tag > p, .appareils-tag > p, .ustensiles-tag > p {
+.recette-card {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 30.33333%;
+}
+
+.recette-img {
+    height: 200px;
+    background-color: #c6bebe;
+    border-radius: 5px 5px 0 0;
+}
+
+.recette-card-body {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    background-color: #e7e7e7;
+    border-radius: 0 0 5px 5px;
+    gap: 20px;
+    height: 200px;
+}
+
+.recette-card-body > div:nth-child(1) {
+    display: flex;
+    justify-content: space-between;
+}
+
+.recette-card-body > div:nth-child(1) > h5 {
     margin: 0;
-    cursor: pointer;
-    border: 1px solid black;
 }
 
+.recette-card-body > div:nth-child(1) > div {
+    display: flex;
+    gap: 5px;
+}
+
+.fa-clock {
+    align-self: center;
+}
+
+.time {
+    align-self: center;
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+.recette-card-ingr-desc {
+    display: flex;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    width: 100%;
+    gap: 10px;
+}
+
+.recette-card-ingr-desc > div {
+    flex: 1;
+    flex-wrap: nowrap;
+}
+
+.recette-card-ingr-desc > div p {
+    margin: 0;
+    padding: 0;
+    font-size: 0.8em;
+    
+}
 
 
 

@@ -20,62 +20,67 @@ function setEventListenerTags(type) {
     const pdivDom = document.querySelectorAll(type + '> p')
 
     pdivDom.forEach(p => {
-        p.addEventListener('click', triByTag)
+        p.addEventListener('mousedown', triByTag)
     })
 }
 
 async function triByTag(e) {
     // quand on clique sur un tag, doit nous afficher une liste de recette avec ces tags la + en fonction de la recherche principale
-    if (checkIfTagAlreadyExist(e.target.innerText)) {
+    // le if check si c'est le bouton gauche qui est utilisé, sinon l'event ne trigger pas
+    if (e.button === 0) {
+        if (checkIfTagAlreadyExist(e.target.innerText)) {
+            return
+        }
+        const tagLowerCase = e.target.innerText.toLowerCase()
+        const recettes = await getMultipleRecettesById(getAllCurrentReccettesId())
+        addSearchTag(e)
+
+        if (e.target.parentNode.classList.contains('ingredients-tag')) {
+            const divDom = document.querySelector('.ingredients-tag')
+            const recettesTri = recettes.filter(recette => triIngredients(recette.ingredients, tagLowerCase))
+            displayRecettes(recettesTri)
+
+            displaySearchTags(getSearchIngredients(recettesTri), '.ingredients-tag')
+            displaySearchTags(getSearchAppareils(recettesTri), '.appareils-tag')
+            displaySearchTags(getSearchUstensiles(recettesTri), '.ustensiles-tag')
+
+            const ingredientsSearchBar = document.querySelector('.ingredients-searchbar')
+            ingredientsSearchBar.value = ''
+        }
+        else if (e.target.parentNode.classList.contains('appareils-tag')) {
+            const divDom = document.querySelector('.appareils-tag')
+            const recettesTri = recettes.filter(recette => recette.appliance.toLowerCase().includes(tagLowerCase))
+            displayRecettes(recettesTri)
+
+            displaySearchTags(getSearchIngredients(recettesTri), '.ingredients-tag')
+            displaySearchTags(getSearchAppareils(recettesTri), '.appareils-tag')
+            displaySearchTags(getSearchUstensiles(recettesTri), '.ustensiles-tag')
+
+            const appareilsSearchBar = document.querySelector('.appareils-searchbar')
+            appareilsSearchBar.value = ''
+        }
+        else if (e.target.parentNode.classList.contains('ustensiles-tag')) {
+            const divDom = document.querySelector('.ustensiles-tag')
+            const recettesTri = recettes.filter(recette => {
+                const ustensilsLowerCase = recette.ustensils.map(ustensil => ustensil.toLowerCase())
+                return ustensilsLowerCase.includes(tagLowerCase)
+            })
+            displayRecettes(recettesTri)
+
+            displaySearchTags(getSearchIngredients(recettesTri), '.ingredients-tag')
+            displaySearchTags(getSearchAppareils(recettesTri), '.appareils-tag')
+            displaySearchTags(getSearchUstensiles(recettesTri), '.ustensiles-tag')
+
+            const ustensilesSearchBar = document.querySelector('.ustensiles-searchbar')
+            ustensilesSearchBar.value = ''
+        }
+    }
+    else {
         return
-    }
-    const tagLowerCase = e.target.innerText.toLowerCase()
-    const recettes = await getMultipleRecettesById(getAllCurrentReccettesId())
-    addSearchTag(e)
-
-    if (e.target.parentNode.classList.contains('ingredients-tag')) {
-        const divDom = document.querySelector('.ingredients-tag')
-        const recettesTri = recettes.filter(recette => triIngredients(recette.ingredients, tagLowerCase))
-        displayRecettes(recettesTri)
-
-        displaySearchTags(getSearchIngredients(recettesTri), '.ingredients-tag')
-        displaySearchTags(getSearchAppareils(recettesTri), '.appareils-tag')
-        displaySearchTags(getSearchUstensiles(recettesTri), '.ustensiles-tag')
-
-        const ingredientsSearchBar = document.querySelector('.ingredients-searchbar')
-        ingredientsSearchBar.value = ''
-    }
-    else if (e.target.parentNode.classList.contains('appareils-tag')) {
-        const divDom = document.querySelector('.appareils-tag')
-        const recettesTri = recettes.filter(recette => recette.appliance.toLowerCase().includes(tagLowerCase))
-        displayRecettes(recettesTri)
-
-        displaySearchTags(getSearchIngredients(recettesTri), '.ingredients-tag')
-        displaySearchTags(getSearchAppareils(recettesTri), '.appareils-tag')
-        displaySearchTags(getSearchUstensiles(recettesTri), '.ustensiles-tag')
-
-        const appareilsSearchBar = document.querySelector('.appareils-searchbar')
-        appareilsSearchBar.value = ''
-    }
-    else if (e.target.parentNode.classList.contains('ustensiles-tag')) {
-        const divDom = document.querySelector('.ustensiles-tag')
-        const recettesTri = recettes.filter(recette => {
-            const ustensilsLowerCase = recette.ustensils.map(ustensil => ustensil.toLowerCase())
-            return ustensilsLowerCase.includes(tagLowerCase)
-        })
-        displayRecettes(recettesTri)
-
-        displaySearchTags(getSearchIngredients(recettesTri), '.ingredients-tag')
-        displaySearchTags(getSearchAppareils(recettesTri), '.appareils-tag')
-        displaySearchTags(getSearchUstensiles(recettesTri), '.ustensiles-tag')
-
-        const ustensilesSearchBar = document.querySelector('.ustensiles-searchbar')
-        ustensilesSearchBar.value = ''
     }
 }
 
 function addSearchTag(e) {
-    console.log(e.target.parentNode)
     if (!checkIfTagAlreadyExist(e.target.innerText)) {
         const divSearchTags = document.querySelector('.search-tag')
         const divDom = document.createElement('div')

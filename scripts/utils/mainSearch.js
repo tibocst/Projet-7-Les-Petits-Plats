@@ -54,7 +54,7 @@ export function getSearchUstensiles(obj) {
 
 export function getAllCurrentReccettesId() {
     const result = []
-    const cardRecettes = document.querySelectorAll('.card-recette > div > div > div')
+    const cardRecettes = document.querySelectorAll('.recette-card')
     cardRecettes.forEach(recette => {
         result.push(parseInt(recette.dataset.id))
     })

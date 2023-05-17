@@ -3,7 +3,7 @@ import { triRecettes, getSearchIngredients, getSearchAppareils, getSearchUstensi
 import { displaySearchTags, ingredientsSearchListener, appareilsSearchListener, ustensilesSearchListener } from '../utils/tagSearch.js'
 
 export async function displayRecettes(recettes) {
-  const recettesSection = document.querySelector('.card-recette > div')
+  const recettesSection = document.querySelector('.section-recette')
   recettesSection.innerHTML = ''
 
   recettes.forEach((recette) => {
@@ -48,23 +48,30 @@ async function initRecette() {
   
   const dropDownSearchBar = document.querySelector('.dropdown-searchbar')
 
+  const ingredientsTag = document.querySelector('.ingredients-tag')
+  const appareilsTag = document.querySelector('.appareils-tag')
+  const ustensilesTag = document.querySelector('.ustensiles-tag')
+
   ingredientsSearchBar.addEventListener('focus', (e) => {
     e.target.placeholder = 'Rechercher un ingérident'
     dropDownSearchBar.style.width = '100%'
     e.target.parentNode.style.flexGrow = '10'
     e.target.style.width = '100%'
+    ingredientsTag.style.display = 'flex'
   })
   appareilsSearchBar.addEventListener('focus', (e) => {
     e.target.placeholder = 'Rechercher un appareil'
     dropDownSearchBar.style.width = '100%'
     e.target.parentNode.style.flexGrow = '10'
     e.target.style.width = '100%'
+    appareilsTag.style.display = 'flex'
   })
   ustensilesSearchBar.addEventListener('focus', (e) => {
     e.target.placeholder = 'Rechercher un ustensile'
     dropDownSearchBar.style.width = '100%'
     e.target.parentNode.style.flexGrow = '10'
     e.target.style.width = '100%'
+    ustensilesTag.style.display = 'flex'
   })
 
   ingredientsSearchBar.addEventListener('blur', (e) => {
@@ -72,21 +79,22 @@ async function initRecette() {
     dropDownSearchBar.style.width = '500px'
     e.target.parentNode.style.flexGrow = '1'
     e.target.style.width = '130px'
+    ingredientsTag.style.display = 'none'
   })
   appareilsSearchBar.addEventListener('blur', (e) => {
     e.target.placeholder = 'Appareils'
     dropDownSearchBar.style.width = '500px'
     e.target.parentNode.style.flexGrow = '1'
     e.target.style.width = '130px'
+    appareilsTag.style.display = 'none'
   })
   ustensilesSearchBar.addEventListener('blur', (e) => {
     e.target.placeholder = 'Ustensiles'
     dropDownSearchBar.style.width = '500px'
     e.target.parentNode.style.flexGrow = '1'
     e.target.style.width = '130px'
+    ustensilesTag.style.display = 'none'
   })
-
-  // a faire : refaire une recherche sur les recettes après avoir supprimé le tag(à voir comment faire)
 }
 
 initRecette()
