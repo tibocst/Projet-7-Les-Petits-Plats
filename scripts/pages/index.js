@@ -74,6 +74,7 @@ async function initRecette() {
       e.target.parentNode.querySelector('img').style.transform = "rotate(180deg)"
     })
   })
+  // test branche alternative
 }
 
 initRecette()
