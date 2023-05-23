@@ -1,5 +1,5 @@
 import { recetteFactory, getRecettes } from '../factories/recetteFactory.js'
-import { triRecettes, getSearchIngredients, getSearchAppareils, getSearchUstensiles } from '../utils/mainSearch.js'
+import { triRecettes, getSearchIngredients, getSearchAppareils, getSearchUstensiles, getAllCurrentReccettesId } from '../utils/mainSearch.js'
 import { displaySearchTags, ingredientsSearchListener, appareilsSearchListener, ustensilesSearchListener } from '../utils/tagSearch.js'
 
 export async function displayRecettes(recettes) {
@@ -12,8 +12,12 @@ export async function displayRecettes(recettes) {
 
     recettesSection.appendChild(cardDOM)
   })
+  if(!getAllCurrentReccettesId().length%2 === 0) {
+    const cardDivDom = document.createElement('div')
+    cardDivDom.setAttribute('class', 'recette-card')
+    recettesSection.appendChild(cardDivDom)
+  }
 }
-
 async function initRecette() {
   const recettes = await getRecettes()
 
@@ -38,6 +42,8 @@ async function initRecette() {
     }
   })
 
+
+
   const ingredientsSearchBar = document.querySelector('.ingredients-searchbar')
   const appareilsSearchBar = document.querySelector('.appareils-searchbar')
   const ustensilesSearchBar = document.querySelector('.ustensiles-searchbar')
@@ -46,54 +52,27 @@ async function initRecette() {
   appareilsSearchBar.addEventListener('input', await appareilsSearchListener)
   ustensilesSearchBar.addEventListener('input', await ustensilesSearchListener)
   
+  const dropDownSearchBarAll = document.querySelectorAll('.dropdown-searchbar > div')
   const dropDownSearchBar = document.querySelector('.dropdown-searchbar')
 
-  const ingredientsTag = document.querySelector('.ingredients-tag')
-  const appareilsTag = document.querySelector('.appareils-tag')
-  const ustensilesTag = document.querySelector('.ustensiles-tag')
-
-  ingredientsSearchBar.addEventListener('focus', (e) => {
-    e.target.placeholder = 'Rechercher un ingérident'
-    dropDownSearchBar.style.width = '100%'
-    e.target.parentNode.style.flexGrow = '10'
-    e.target.style.width = '100%'
-    ingredientsTag.style.display = 'flex'
-  })
-  appareilsSearchBar.addEventListener('focus', (e) => {
-    e.target.placeholder = 'Rechercher un appareil'
-    dropDownSearchBar.style.width = '100%'
-    e.target.parentNode.style.flexGrow = '10'
-    e.target.style.width = '100%'
-    appareilsTag.style.display = 'flex'
-  })
-  ustensilesSearchBar.addEventListener('focus', (e) => {
-    e.target.placeholder = 'Rechercher un ustensile'
-    dropDownSearchBar.style.width = '100%'
-    e.target.parentNode.style.flexGrow = '10'
-    e.target.style.width = '100%'
-    ustensilesTag.style.display = 'flex'
+  dropDownSearchBarAll.forEach((element) => {
+    element.querySelector('input').addEventListener('focus', (e) => {
+      e.target.placeholder = 'Rechercher un ingérident'
+      dropDownSearchBar.style.width = '100%'
+      e.target.parentNode.style.flexGrow = '10'
+      e.target.parentNode.querySelector('div').style.display = 'flex'
+      e.target.parentNode.querySelector('img').style.transform = "rotate(0deg)"
+    })
   })
 
-  ingredientsSearchBar.addEventListener('blur', (e) => {
-    e.target.placeholder = 'Ingéridents'
-    dropDownSearchBar.style.width = '500px'
-    e.target.parentNode.style.flexGrow = '1'
-    e.target.style.width = '130px'
-    ingredientsTag.style.display = 'none'
-  })
-  appareilsSearchBar.addEventListener('blur', (e) => {
-    e.target.placeholder = 'Appareils'
-    dropDownSearchBar.style.width = '500px'
-    e.target.parentNode.style.flexGrow = '1'
-    e.target.style.width = '130px'
-    appareilsTag.style.display = 'none'
-  })
-  ustensilesSearchBar.addEventListener('blur', (e) => {
-    e.target.placeholder = 'Ustensiles'
-    dropDownSearchBar.style.width = '500px'
-    e.target.parentNode.style.flexGrow = '1'
-    e.target.style.width = '130px'
-    ustensilesTag.style.display = 'none'
+  dropDownSearchBarAll.forEach((element) => {
+    element.querySelector('input').addEventListener('blur', (e) => {
+      e.target.placeholder = 'Ingéridents'
+      dropDownSearchBar.style.width = '500px'
+      e.target.parentNode.style.flexGrow = '1'
+      e.target.parentNode.querySelector('div').style.display = 'none'
+      e.target.parentNode.querySelector('img').style.transform = "rotate(180deg)"
+    })
   })
 }
 

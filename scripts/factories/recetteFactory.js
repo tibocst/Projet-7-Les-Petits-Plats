@@ -6,7 +6,7 @@ export function recetteFactory (data) {
     cardDom.classList.add('recette-card')
     cardDom.setAttribute('data-id', id)
 
-    cardDom.innerHTML = '<div class="recette-img"></div><div class="recette-card-body"><div><h5 class="recette-card-title"></h5><div><i class="fa-regular fa-clock"></i><p class="time"></p></div></div><div class="recette-card-ingr-desc"><div class="ingredients"></div><div class="description"></div></div></div>'
+    cardDom.innerHTML = '<div class="recette-img"></div><div class="recette-card-body"><div><div><h5 class="recette-card-title"></h5></div><div class="div-time"><i class="fa-regular fa-clock"></i><p class="time"></p></div></div><div class="recette-card-ingr-desc"><div class="ingredients"></div><div class="description"></div></div></div>'
     
     const pDescription = document.createElement('p')
     pDescription.innerText = description
