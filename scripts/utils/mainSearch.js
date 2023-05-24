@@ -1,6 +1,7 @@
 import { getRecettes } from '../factories/recetteFactory.js'
 
-// filtre les recettes en fonction d'un string et les renvoies
+// début modif algo recherche princiaple
+
 export async function triRecettes(string) {
     const lowerString = string.toLowerCase()
     console.log(lowerString)
@@ -9,8 +10,6 @@ export async function triRecettes(string) {
     // recettes.filter((recette) => recette.name.toLowerCase().includes(lowerString) || recette.description.toLowerCase().includes(lowerString) || triIngredients(recette.ingredients, lowerString))
     return recettesTri
 }
-
-// début modif algo recherche princiaple
 
 function filterAlternative(array, string) {
         var i = 0
