@@ -48,9 +48,9 @@ async function initRecette() {
   const appareilsSearchBar = document.querySelector('.appareils-searchbar')
   const ustensilesSearchBar = document.querySelector('.ustensiles-searchbar')
 
-  ingredientsSearchBar.addEventListener('input', await ingredientsSearchListener)
-  appareilsSearchBar.addEventListener('input', await appareilsSearchListener)
-  ustensilesSearchBar.addEventListener('input', await ustensilesSearchListener)
+  ingredientsSearchBar.addEventListener('input', ingredientsSearchListener)
+  appareilsSearchBar.addEventListener('input', appareilsSearchListener)
+  ustensilesSearchBar.addEventListener('input', ustensilesSearchListener)
   
   const dropDownSearchBarAll = document.querySelectorAll('.dropdown-searchbar > div')
   const dropDownSearchBar = document.querySelector('.dropdown-searchbar')
@@ -61,7 +61,7 @@ async function initRecette() {
       dropDownSearchBar.style.width = '100%'
       e.target.parentNode.style.flexGrow = '10'
       e.target.parentNode.querySelector('div').style.display = 'flex'
-      e.target.parentNode.querySelector('img').style.transform = "rotate(0deg)"
+      e.target.parentNode.querySelector('img').style.transform = 'rotate(0deg)'
     })
   })
 
@@ -71,7 +71,7 @@ async function initRecette() {
       dropDownSearchBar.style.width = '500px'
       e.target.parentNode.style.flexGrow = '1'
       e.target.parentNode.querySelector('div').style.display = 'none'
-      e.target.parentNode.querySelector('img').style.transform = "rotate(180deg)"
+      e.target.parentNode.querySelector('img').style.transform = 'rotate(180deg)'
     })
   })
 }
