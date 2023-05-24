@@ -46,8 +46,6 @@ async function initRecette() {
     }
   })
 
-
-
   const ingredientsSearchBar = document.querySelector('.ingredients-searchbar')
   const appareilsSearchBar = document.querySelector('.appareils-searchbar')
   const ustensilesSearchBar = document.querySelector('.ustensiles-searchbar')
