@@ -18,6 +18,7 @@ export async function displayRecettes(recettes) {
     recettesSection.appendChild(cardDivDom)
   }
 }
+
 async function initRecette() {
   const recettes = await getRecettes()
 
@@ -74,7 +75,6 @@ async function initRecette() {
       e.target.parentNode.querySelector('img').style.transform = "rotate(180deg)"
     })
   })
-  // test branche alternative
 }
 
 initRecette()
