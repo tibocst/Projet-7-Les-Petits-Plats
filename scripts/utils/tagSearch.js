@@ -7,7 +7,7 @@ export function displaySearchTags(obj, type) {
     divDom.innerHTML = ''
 
     obj.forEach(variable => {
-        if(!checkIfTagAlreadyExist(variable.toLowerCase())){
+        if (!checkIfTagAlreadyExist(variable.toLowerCase())) {
             const pDom = document.createElement('p')
             pDom.innerText = variable
             divDom.appendChild(pDom)
@@ -87,7 +87,7 @@ function addSearchTag(e) {
         const imgDom = document.createElement('img')
         const pDom = document.createElement('p')
 
-        if(e.target.parentNode.classList.contains('ingredients-tag')) {
+        if (e.target.parentNode.classList.contains('ingredients-tag')) {
             divDom.addEventListener("click", deleteSearchTag)
             divDom.classList.add('ingredients-tag_added')
         }
@@ -108,18 +108,18 @@ function addSearchTag(e) {
     }
 }
 
-async function deleteSearchTag(e){
+async function deleteSearchTag(e) {
     console.log(e.target.parentNode)
     e.target.parentNode.parentNode.removeChild(e.target.parentNode)
     const searchBarMain = document.querySelector('.search-bar_main')
 
-    if(searchBarMain.value.length > 2) {
+    if (searchBarMain.value.length > 2) {
         var recettesTri = await triRecettes(searchBarMain.value)
     }
     else {
         var recettesTri = await getRecettes()
     }
-    
+
     recettesTri = triRecettesByAlreadyAddedTag(recettesTri)
 
     console.log(recettesTri)
@@ -135,7 +135,7 @@ async function deleteSearchTag(e){
 export function triRecettesByAlreadyAddedTag(recettesTri){
     const tags = document.querySelectorAll('.search-tag > div')
     var recettes = recettesTri
-    if(tags.length === 0) {
+    if (tags.length === 0) {
         return recettes
     } else {
         tags.forEach(tag => {
@@ -143,10 +143,10 @@ export function triRecettesByAlreadyAddedTag(recettesTri){
             if(tag.classList.contains('ingredients-tag_added')){
                 recettes = recettes.filter(recette => triIngredients(recette.ingredients, tag.querySelector('p').innerText.toLowerCase()))
             }
-            else if(tag.classList.contains('appareils-tag_added')) {
+            else if (tag.classList.contains('appareils-tag_added')) {
                 recettes = recettes.filter(recette => recette.appliance.toLowerCase().includes(tag.querySelector('p').innerText.toLowerCase()))
             }
-            else if(tag.classList.contains('ustensiles-tag_added')) {
+            else if (tag.classList.contains('ustensiles-tag_added')) {
                 recettes = recettes.filter(recette => {
                     const ustensilsLowerCase = recette.ustensils.map(ustensil => ustensil.toLowerCase())
                     return ustensilsLowerCase.includes(tag.querySelector('p').innerText.toLowerCase())
@@ -170,15 +170,15 @@ function checkIfTagAlreadyExist(stringToCheck) {
 }
 
 export async function ingredientsSearchListener(e) {
-    displaySearchTags(getSearchIngredients(await getMultipleRecettesById(getAllCurrentReccettesId())).filter( element => element.toLowerCase().includes(e.target.value.toLowerCase())),'.ingredients-tag')
+    displaySearchTags(getSearchIngredients(await getMultipleRecettesById(getAllCurrentReccettesId())).filter(element => element.toLowerCase().includes(e.target.value.toLowerCase())), '.ingredients-tag')
 }
 
 export async function appareilsSearchListener(e) {
-    displaySearchTags(getSearchAppareils(await getMultipleRecettesById(getAllCurrentReccettesId())).filter( element => element.toLowerCase().includes(e.target.value.toLowerCase())),'.appareils-tag')
+    displaySearchTags(getSearchAppareils(await getMultipleRecettesById(getAllCurrentReccettesId())).filter(element => element.toLowerCase().includes(e.target.value.toLowerCase())), '.appareils-tag')
 
 }
 
 export async function ustensilesSearchListener(e) {
-    displaySearchTags(getSearchUstensiles(await getMultipleRecettesById(getAllCurrentReccettesId())).filter( element => element.toLowerCase().includes(e.target.value.toLowerCase())),'.ustensiles-tag')
+    displaySearchTags(getSearchUstensiles(await getMultipleRecettesById(getAllCurrentReccettesId())).filter(element => element.toLowerCase().includes(e.target.value.toLowerCase())), '.ustensiles-tag')
 }
 

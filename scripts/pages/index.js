@@ -53,7 +53,7 @@ async function initRecette() {
   ingredientsSearchBar.addEventListener('input', ingredientsSearchListener)
   appareilsSearchBar.addEventListener('input', appareilsSearchListener)
   ustensilesSearchBar.addEventListener('input', ustensilesSearchListener)
-  
+
   const dropDownSearchBarAll = document.querySelectorAll('.dropdown-searchbar > div')
   const dropDownSearchBar = document.querySelector('.dropdown-searchbar')
 
