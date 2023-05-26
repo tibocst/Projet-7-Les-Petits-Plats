@@ -1,5 +1,6 @@
 import { getRecettes } from '../factories/recetteFactory.js'
 
+// filtre les recettes en fonction d'un string et les renvoies
 export async function triRecettes(string) {
     const lowerString = string.toLowerCase()
     console.log(lowerString)

@@ -131,6 +131,7 @@ async function deleteSearchTag(e){
     displaySearchTags(getSearchUstensiles(recettesTri), '.ustensiles-tag')
 }
 
+// permet de retrier les recettes après la supprésion d'un tag
 function triRecettesByAlreadyAddedTag(recettesTri){
     const tags = document.querySelectorAll('.search-tag > div')
     var recettes = recettesTri
@@ -181,15 +182,5 @@ export async function appareilsSearchListener(e) {
 
 export async function ustensilesSearchListener(e) {
     displaySearchTags(getSearchUstensiles(await getMultipleRecettesById(getAllCurrentReccettesId())).filter( element => element.toLowerCase().includes(e.target.value.toLowerCase())),'.ustensiles-tag')
-}
-
-function getCurrentTags(type) {
-    var result = []
-    const pDom = document.querySelectorAll(type + ' > p')
-    pDom.forEach(variable => {
-        result.push(variable.innerText)
-    })
-    console.log(result)
-    return result
 }
 

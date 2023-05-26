@@ -12,6 +12,7 @@ export async function displayRecettes(recettes) {
 
     recettesSection.appendChild(cardDOM)
   })
+  // permet l'affichage correct du dernier élément des recettes si le nbr de recette est impair
   if(!getAllCurrentReccettesId().length%2 === 0) {
     const cardDivDom = document.createElement('div')
     cardDivDom.setAttribute('class', 'recette-card')
@@ -28,6 +29,7 @@ async function initRecette() {
 
   const mainSearchBar = document.querySelector('.search-bar_main')
   mainSearchBar.addEventListener("keyup", async (e) => {
+    //commence la recherche à partir de 3 caractères
     if (e.target.value.length > 2) {
       const recettesTri = await triRecettes(e.target.value)
       displayRecettes(recettesTri)
