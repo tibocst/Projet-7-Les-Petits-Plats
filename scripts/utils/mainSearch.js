@@ -1,50 +1,49 @@
 import { getRecettes } from '../factories/recetteFactory.js'
 
 // début modif algo recherche princiaple
-
+// filtre les recettes en fonction d'un string et les renvoies
 export async function triRecettes(string) {
     const lowerString = string.toLowerCase()
     console.log(lowerString)
     const recettes = await getRecettes()
     var recettesTri = filterAlternative(recettes, lowerString)
-    // recettes.filter((recette) => recette.name.toLowerCase().includes(lowerString) || recette.description.toLowerCase().includes(lowerString) || triIngredients(recette.ingredients, lowerString))
     return recettesTri
 }
 
 function filterAlternative(array, string) {
-        var i = 0
-        var j = 0
-        var arrayResult = []
-        console.log(array.length)
-        while (i < array.length) {
-          const val = array[i]
-          
-          if (checkTitre(val.name, string) || checkDescription(val.description, string) || checkIngredients(val.ingredients, string)) {
+    var i = 0
+    var j = 0
+    var arrayResult = []
+    console.log(array.length)
+    while (i < array.length) {
+        const val = array[i]
+
+        if (checkTitre(val.name, string) || checkDescription(val.description, string) || checkIngredients(val.ingredients, string)) {
             arrayResult.push(array[i])
-          }
-          i++
         }
-      
-        array.length = j
-        return arrayResult
+        i++
+    }
+
+    array.length = j
+    return arrayResult
 }
 
-function checkTitre(name, string){
+function checkTitre(name, string) {
     var r = new RegExp(string)
     return r.test(name.toLowerCase())
 }
 
-function checkDescription(description, string){
+function checkDescription(description, string) {
     var r = new RegExp(string)
     return r.test(description.toLowerCase())
 }
 
-function checkIngredients(ingredients, string){
+function checkIngredients(ingredients, string) {
     for (let i = 0; i < ingredients.length; i++) {
         var element = ingredients[i].ingredient;
         var r = new RegExp(string)
         console.log(element)
-        if(r.test(element.toLowerCase())){
+        if (r.test(element.toLowerCase())) {
             return true
         }
     }

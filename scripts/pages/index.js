@@ -12,7 +12,8 @@ export async function displayRecettes(recettes) {
 
     recettesSection.appendChild(cardDOM)
   })
-  if(!getAllCurrentReccettesId().length%2 === 0) {
+  // permet l'affichage correct du dernier élément des recettes si le nbr de recette est impair
+  if (!getAllCurrentReccettesId().length % 2 === 0) {
     const cardDivDom = document.createElement('div')
     cardDivDom.setAttribute('class', 'recette-card')
     recettesSection.appendChild(cardDivDom)
@@ -29,6 +30,7 @@ async function initRecette() {
 
   const mainSearchBar = document.querySelector('.search-bar_main')
   mainSearchBar.addEventListener("keyup", async (e) => {
+    //commence la recherche à partir de 3 caractères
     if (e.target.value.length > 2) {
       const recettesTri = await triRecettes(e.target.value)
       displayRecettes(recettesTri)
@@ -50,7 +52,7 @@ async function initRecette() {
   ingredientsSearchBar.addEventListener('input', ingredientsSearchListener)
   appareilsSearchBar.addEventListener('input', appareilsSearchListener)
   ustensilesSearchBar.addEventListener('input', ustensilesSearchListener)
-  
+
   const dropDownSearchBarAll = document.querySelectorAll('.dropdown-searchbar > div')
   const dropDownSearchBar = document.querySelector('.dropdown-searchbar')
 
