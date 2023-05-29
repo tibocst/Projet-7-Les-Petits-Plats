@@ -21,10 +21,6 @@ function filterAlternative(recettes, lowerString) {
         }
         return recettesResult;
 }
-
-function triIngredients(ingredients, lowerString) {
-    return ingredients.some((i) => i.ingredient.toLowerCase().includes(lowerString));
-}
 //  fin des modifs algo recherche principale
 
 export function triIngredients(ingredients, lowerString) {
