@@ -180,18 +180,5 @@ export async function appareilsSearchListener(e) {
 
 export async function ustensilesSearchListener(e) {
     displaySearchTags(getSearchUstensiles(await getMultipleRecettesById(getAllCurrentReccettesId())).filter(element => element.toLowerCase().includes(e.target.value.toLowerCase())), '.ustensiles-tag')
-<<<<<<< HEAD
-=======
-}
-
-function getCurrentTags(type) {
-    var result = []
-    const pDom = document.querySelectorAll(type + ' > p')
-    pDom.forEach(variable => {
-        result.push(variable.innerText)
-    })
-    console.log(result)
-    return result
->>>>>>> 6833a83717a5db79e2dee2b7a7297efdf811bc8b
 }
 
