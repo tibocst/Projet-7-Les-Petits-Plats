@@ -132,17 +132,15 @@ async function deleteSearchTag(e){
 }
 
 // permet de retrier les recettes après la supprésion d'un tag
-function triRecettesByAlreadyAddedTag(recettesTri){
+export function triRecettesByAlreadyAddedTag(recettesTri){
     const tags = document.querySelectorAll('.search-tag > div')
     var recettes = recettesTri
     if(tags.length === 0) {
         return recettes
     } else {
-        console.log(tags)
         tags.forEach(tag => {
-
+            console.log(tag)
             if(tag.classList.contains('ingredients-tag_added')){
-                console.log('passé')
                 recettes = recettes.filter(recette => triIngredients(recette.ingredients, tag.querySelector('p').innerText.toLowerCase()))
             }
             else if(tag.classList.contains('appareils-tag_added')) {

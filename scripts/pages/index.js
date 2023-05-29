@@ -1,6 +1,6 @@
 import { recetteFactory, getRecettes } from '../factories/recetteFactory.js'
 import { triRecettes, getSearchIngredients, getSearchAppareils, getSearchUstensiles, getAllCurrentReccettesId } from '../utils/mainSearch.js'
-import { displaySearchTags, ingredientsSearchListener, appareilsSearchListener, ustensilesSearchListener } from '../utils/tagSearch.js'
+import { displaySearchTags, ingredientsSearchListener, appareilsSearchListener, ustensilesSearchListener, triRecettesByAlreadyAddedTag } from '../utils/tagSearch.js'
 
 export async function displayRecettes(recettes) {
   const recettesSection = document.querySelector('.section-recette')
@@ -19,6 +19,7 @@ export async function displayRecettes(recettes) {
     recettesSection.appendChild(cardDivDom)
   }
 }
+
 async function initRecette() {
   const recettes = await getRecettes()
 
@@ -31,16 +32,17 @@ async function initRecette() {
   mainSearchBar.addEventListener("keyup", async (e) => {
     //commence la recherche à partir de 3 caractères
     if (e.target.value.length > 2) {
-      const recettesTri = await triRecettes(e.target.value)
+      const recettesTri = triRecettesByAlreadyAddedTag(await triRecettes(e.target.value))
       displayRecettes(recettesTri)
       displaySearchTags(getSearchIngredients(recettesTri), '.ingredients-tag')
       displaySearchTags(getSearchAppareils(recettesTri), '.appareils-tag')
       displaySearchTags(getSearchUstensiles(recettesTri), '.ustensiles-tag')
     } else {
-      displayRecettes(recettes)
-      displaySearchTags(getSearchIngredients(recettes), '.ingredients-tag')
-      displaySearchTags(getSearchAppareils(recettes), '.appareils-tag')
-      displaySearchTags(getSearchUstensiles(recettes), '.ustensiles-tag')
+      const recettesTri = triRecettesByAlreadyAddedTag(recettes)
+      displayRecettes(recettesTri)
+      displaySearchTags(getSearchIngredients(recettesTri), '.ingredients-tag')
+      displaySearchTags(getSearchAppareils(recettesTri), '.appareils-tag')
+      displaySearchTags(getSearchUstensiles(recettesTri), '.ustensiles-tag')
     }
   })
 
