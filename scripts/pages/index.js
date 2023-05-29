@@ -13,7 +13,11 @@ export async function displayRecettes(recettes) {
     recettesSection.appendChild(cardDOM)
   })
   // permet l'affichage correct du dernier élément des recettes si le nbr de recette est impair
+<<<<<<< HEAD
   if(!getAllCurrentReccettesId().length%2 === 0) {
+=======
+  if (!getAllCurrentReccettesId().length % 2 === 0) {
+>>>>>>> 6833a83717a5db79e2dee2b7a7297efdf811bc8b
     const cardDivDom = document.createElement('div')
     cardDivDom.setAttribute('class', 'recette-card')
     recettesSection.appendChild(cardDivDom)
