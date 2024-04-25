@@ -46,8 +46,6 @@ async function initRecette() {
     }
   })
 
-
-
   const ingredientsSearchBar = document.querySelector('.ingredients-searchbar')
   const appareilsSearchBar = document.querySelector('.appareils-searchbar')
   const ustensilesSearchBar = document.querySelector('.ustensiles-searchbar')
@@ -55,13 +53,26 @@ async function initRecette() {
   ingredientsSearchBar.addEventListener('input', ingredientsSearchListener)
   appareilsSearchBar.addEventListener('input', appareilsSearchListener)
   ustensilesSearchBar.addEventListener('input', ustensilesSearchListener)
-  
+
   const dropDownSearchBarAll = document.querySelectorAll('.dropdown-searchbar > div')
   const dropDownSearchBar = document.querySelector('.dropdown-searchbar')
 
   dropDownSearchBarAll.forEach((element) => {
     element.querySelector('input').addEventListener('focus', (e) => {
-      e.target.placeholder = 'Rechercher un ingérident'
+      switch (e.target.className) {
+        case 'ingredients-searchbar':
+          e.target.placeholder = 'Rechercher un ingrédient'
+          break;
+        case 'appareils-searchbar':
+          e.target.placeholder = 'Rechercher un appareil'
+          break;
+        case 'ustensiles-searchbar':
+          e.target.placeholder = 'Rechercher un ustensile'
+          break;
+        default:
+          break;
+      }
+      
       dropDownSearchBar.style.width = '100%'
       e.target.parentNode.style.flexGrow = '10'
       e.target.parentNode.querySelector('div').style.display = 'flex'
@@ -71,7 +82,20 @@ async function initRecette() {
 
   dropDownSearchBarAll.forEach((element) => {
     element.querySelector('input').addEventListener('blur', (e) => {
-      e.target.placeholder = 'Ingéridents'
+      switch (e.target.className) {
+        case 'ingredients-searchbar':
+          e.target.placeholder = 'Ingrédients'
+          break;
+        case 'appareils-searchbar':
+          e.target.placeholder = 'Appareils'
+          break;
+        case 'ustensiles-searchbar':
+          e.target.placeholder = 'Ustensiles'
+          break;
+        default:
+          break;
+      }
+      
       dropDownSearchBar.style.width = '500px'
       e.target.parentNode.style.flexGrow = '1'
       e.target.parentNode.querySelector('div').style.display = 'none'

@@ -1,13 +1,27 @@
 import { getRecettes } from '../factories/recetteFactory.js'
 
+// début modif algo recherche princiaple
 // filtre les recettes en fonction d'un string et les renvoies
 export async function triRecettes(string) {
     const lowerString = string.toLowerCase()
-    console.log(lowerString)
     const recettes = await getRecettes()
-    var recettesTri = recettes.filter((recette) => recette.name.toLowerCase().includes(lowerString) || recette.description.toLowerCase().includes(lowerString) || triIngredients(recette.ingredients, lowerString))
+    var recettesTri = filterAlternative(recettes, lowerString)
     return recettesTri
 }
+
+function filterAlternative(recettes, lowerString) {
+        let recettesResult = [];
+  
+        for (let i=0; i < recettes.length;i++) {
+          const recette = recettes[i];
+          
+          if (recette.name.toLowerCase().includes(lowerString) || recette.description.toLowerCase().includes(lowerString) || triIngredients(recette.ingredients, lowerString)) {
+            recettesResult.push(recette);
+          }
+        }
+        return recettesResult;
+}
+//  fin des modifs algo recherche principale
 
 export function triIngredients(ingredients, lowerString) {
     return ingredients.some((i) => i.ingredient.toLowerCase().includes(lowerString));
