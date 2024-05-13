@@ -86,6 +86,11 @@ function addSearchTag(e) {
         const divDom = document.createElement('div')
         const imgDom = document.createElement('img')
         const pDom = document.createElement('p')
+        pDom.innerText = e.target.innerText
+        imgDom.setAttribute('src', './assets/circle-xmark-regular.svg')
+        divDom.appendChild(pDom)
+        divDom.appendChild(imgDom)
+        divSearchTags.appendChild(divDom)
 
         if (e.target.parentNode.classList.contains('ingredients-tag')) {
             divDom.addEventListener("click", deleteSearchTag)
@@ -99,17 +104,10 @@ function addSearchTag(e) {
             divDom.addEventListener("click", deleteSearchTag)
             divDom.classList.add('ustensiles-tag_added')
         }
-
-        pDom.innerText = e.target.innerText
-        imgDom.setAttribute('src', './assets/circle-xmark-regular.svg')
-        divDom.appendChild(pDom)
-        divDom.appendChild(imgDom)
-        divSearchTags.appendChild(divDom)
     }
 }
 
 async function deleteSearchTag(e) {
-    console.log(e.target.parentNode)
     e.target.parentNode.parentNode.removeChild(e.target.parentNode)
     const searchBarMain = document.querySelector('.search-bar_main')
 
@@ -122,8 +120,6 @@ async function deleteSearchTag(e) {
 
     recettesTri = triRecettesByAlreadyAddedTag(recettesTri)
 
-    console.log(recettesTri)
-
     displayRecettes(recettesTri)
 
     displaySearchTags(getSearchIngredients(recettesTri), '.ingredients-tag')
@@ -133,13 +129,15 @@ async function deleteSearchTag(e) {
 
 // permet de retrier les recettes après la supprésion d'un tag
 export function triRecettesByAlreadyAddedTag(recettesTri){
+    console.log(recettesTri)
     const tags = document.querySelectorAll('.search-tag > div')
     var recettes = recettesTri
+    console.log(tags)
     if (tags.length === 0) {
         return recettes
+        
     } else {
         tags.forEach(tag => {
-            console.log(tag)
             if(tag.classList.contains('ingredients-tag_added')){
                 recettes = recettes.filter(recette => triIngredients(recette.ingredients, tag.querySelector('p').innerText.toLowerCase()))
             }

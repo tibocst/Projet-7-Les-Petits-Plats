@@ -102,6 +102,12 @@ async function initRecette() {
       e.target.parentNode.querySelector('img').style.transform = 'rotate(180deg)'
     })
   })
+
+  const explicationSiteClose = document.querySelector('.explicationSite_close')
+  
+  explicationSiteClose.addEventListener('click', (e) => {
+    document.querySelector('.explicationSite').style.display = 'none'
+  })
 }
 
 initRecette()
